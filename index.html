@@ -10,13 +10,9 @@
 <body>
     <div id="app">
         <div class = "goods_section">
-            <div class="good__container">
-                <div class="good">
-                    <div class="good__container">
-                        <img :src="goods[0]['images']" alt="">
-                    </div>
-                </div>
-        </div>
+            <div class="goods__container">
+                <good-list :goodList="goods"></good-list>
+            </div>
         </div>
     </div>
 
