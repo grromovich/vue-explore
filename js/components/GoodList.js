@@ -1,6 +1,13 @@
-let goodList = app.Vue("goods-list",{
+let goodList = Vue.component("good-list",{
     props: {
-        goodList:{}
+        goodlist: {}
     },
-    template: ""
+    template: `<div><div class="good" v-for="good in goodlist">
+                    <div class="good__container" >
+                        <img :src="good['images']" alt="">
+                        <h3 class="title">{{good['name']}}</h3>
+                        <div class="price">{{good['price']}}$</div>
+                    </div>
+                </div>
+                </div>`
 })

@@ -11,23 +11,27 @@
     <div id="app">
         <div class = "goods_section">
             <div class="good__container">
-                    <div class="good">
-                        <div class="good__container">
-                            <img :src="goods[0]['images']" alt="">
-                        </div>
+                <div class="good">
+                    <div class="good__container">
+                        <img :src="goods[0]['images']" alt="">
                     </div>
-            </div>
+                </div>
+        </div>
         </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2.7.8/dist/vue.js"></script>
     <script src="js/grocery.js"></script>
+    <script src="js/components/GoodList.js"></script>
 
     <script>
         const app = new Vue({
             el: "#app",
             data: {
                 goods: grocery
+            },
+            components: {
+                "good-list": goodList
             }
         })
     </script>
