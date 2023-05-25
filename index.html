@@ -10,12 +10,12 @@
 <body>
     <div id="app">
         <button @click="openPopup">Открыть</button>
-        <popup v-bind:popup="popup" @close="closePopup" />
         <div class = "goods_section">
             <div class="goods__container">
                 <good-list :goodList="goods"></good-list>
             </div>
         </div>
+        <popup v-bind:popup="popup" @close="closePopup" />
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2.7.8/dist/vue.js"></script>
@@ -26,22 +26,20 @@
     <script>
         const app = new Vue({
             el: "#app",
-            data: {
-                goods: grocery
-            },
             components: {
                 "good-list": goodList,
                 "popup" : popupcomp
             },
             data: {
+                goods: grocery.slice(0, 10),
                 popup: false
             },
             methods: {
                 openPopup: function() {
                     this.popup = true
                 },
-                closePopup: function(popup) {
-                    this.popup = popup
+                closePopup: function() {
+                    this.popup = false
                 }
             }
         })
