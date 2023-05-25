@@ -9,10 +9,9 @@
 </head>
 <body>
     <div id="app">
-        <button @click="openPopup">Открыть</button>
         <div class = "goods_section">
             <div class="goods__container">
-                <good-list :goodList="goods"></good-list>
+                <good-list :goodList="goods" @open="openPopup"></good-list>
             </div>
         </div>
         <popup v-bind:popup="popup" @close="closePopup" />
