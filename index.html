@@ -9,13 +9,15 @@
 </head>
 <body>
     <div id="app">
-        <header-comp> </header-comp>
+        <header-comp></header-comp>
         <div class = "goods_section">
             <div class="goods__container">
                 <good-list :goodList="goods" @open="openPopup"></good-list>
             </div>
+            <button class = "load-more" @click="loadMore" v-if="grocery.length >= goodsnow">Загрузить ещё</button>
         </div>
-        <popup v-bind:popup="popup" @close="closePopup" />
+        
+        <popup v-bind:popup="popup" @close="closePopup"></popup>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2.7.8/dist/vue.js"></script>
@@ -33,6 +35,8 @@
                 "header-comp": headercomp
             },
             data: {
+                goodsnow: 10,
+                grocery: grocery,
                 goods: grocery.slice(0, 10),
                 popup: false
             },
@@ -42,6 +46,10 @@
                 },
                 closePopup: function() {
                     this.popup = false
+                },
+                loadMore: function() {
+                    this.goodsnow += 10
+                    this.goods = grocery.slice(0, this.goodsnow)
                 }
             }
         })

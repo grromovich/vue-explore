@@ -8,12 +8,13 @@
     padding-top: 30px;
     width: 100%;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
 }
 
 .goods__container {
     width: 90%;
+    margin: 0 auto;
 }
 
 .goods__container > div {
@@ -39,6 +40,7 @@
     flex-direction: column;
     align-items: center;
     gap: 10px;
+    user-select: none;
 }
 
 .good__container img {
@@ -107,4 +109,15 @@
 .menu a {
     color: black;
     text-decoration: none;
+}
+
+.load-more {
+    margin-top: 20px;
+    width: 120px;
+    height: 40px;
+    border: 1px solid rgb(77, 77, 77);
+    border-radius: 20px;
+    background-color: white;
+    color: black;
+    font-size: 15px;
 }
