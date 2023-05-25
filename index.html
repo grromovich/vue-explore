@@ -9,15 +9,7 @@
 </head>
 <body>
     <div id="app">
-        <div class="header">
-            <div class="header__container">
-                <div class="logo">Logo</div>
-                <ul class="menu">
-                    <li><a href="">Товары</a></li>
-                    <li><a href="">Блог</a></li>
-                </ul>
-            </div>
-        </div>
+        <header-comp />
         <div class = "goods_section">
             <div class="goods__container">
                 <good-list :goodList="goods" @open="openPopup"></good-list>
@@ -30,13 +22,15 @@
     <script src="js/grocery.js"></script>
     <script src="js/components/GoodList.js"></script>
     <script src="js/components/Popup.js"></script>
+    <script src="js/components/Header.js"></script>
 
     <script>
         const app = new Vue({
             el: "#app",
             components: {
                 "good-list": goodList,
-                "popup" : popupcomp
+                "popup" : popupcomp,
+                "header-comp": headercomp
             },
             data: {
                 goods: grocery.slice(0, 10),
