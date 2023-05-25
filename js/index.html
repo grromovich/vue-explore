@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <button @click="openPopup">Открыть</button>
+        <popup v-bind:popup="popup" @close="closePopup" />
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.8/dist/vue.js"></script>
+    <script>
+        let popupcomp = Vue.component("popup", {
+            props: {
+                popup: {}
+            },
+            template:  `<div class="overlay" v-if="popup">
+                            <div class="popup">
+                                <div class="krest" @click ="$emit('close', false)">x</div>
+                                <div class="popup__container"><h1>йцу</h1></div>
+                            </div>
+                        </div>`
+        }
+        )
+
+        const app = new Vue({
+            el: "#app",
+            components: {
+                "popup" : popupcomp
+            },
+            data: {
+                popup: false
+            },
+            methods: {
+                openPopup: function() {
+                    this.popup = true
+                },
+                closePopup: function(popup) {
+                    this.popup = popup
+                }
+            }
+        })
+
+    </script>
+</body>
+</html>
