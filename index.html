@@ -55,7 +55,7 @@
             <div class="goods__container">
                 <good-list :goodList="goods" @open="openPopup"></good-list>
             </div>
-            <button @click = "loadMore">Загрузить ещё</button>
+            <button @click = "loadMore" class="load-more">Загрузить ещё</button>
         </div>
         <popup v-bind:popup="popup" @close="closePopup" />
     </div>
@@ -65,6 +65,7 @@
     <script src="js/grocery.js"></script>
     <script src="js/components/GoodList.js"></script>
     <script src="js/components/Popup.js"></script>
+    <script src="js/components/Header.js"></script>
 
     <script>
         const app = new Vue({
