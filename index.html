@@ -12,50 +12,20 @@
         <header-comp></header-comp>
     <div class="main">
         <section class="menu">
-            <a href="#" class="menu__logo">Rubik</a>
+            <a href="#" class="menu__logo">Категории</a>
             <ul class="menu__list list">
-              <li class="menu__item item">
-                <a href="#" class="menu__link link">
-                  <span>Отдел 1</span>
-                </a>
-              </li>
-              <li class="menu__item item">
-                <a href="#" class="menu__link link">
-                  <span>Отдел 2</span>
-                </a>
-              </li>
-              <li class="menu__item item">
-                <a href="#" class="menu__link link">
-                  <span>Starred</span>
-                </a>
-              </li>
-              <li class="menu__item item">
-                <a href="#" class="menu__link link">
-                  <span>Photos</span>
-                </a>
-              </li>
-              <li class="menu__item item">
-                <a href="#" class="menu__link link">
-                  <span>Shared</span>
-                </a>
-              </li>
-              <li class="menu__item item">
-                <a href="#" class="menu__link link">
-                  <span>File</span>
-                </a>
-              </li>
-              <li class="menu__item item">
-                <a href="#" class="menu__link link">
-                  <span>Delete</span>
-                </a>
+              <li class="menu__item item" v-for="category in categories">
+                <div class="menu__link link">
+                  <span @click="switchCategory">{{category}}</span>
+                </div>
               </li>
             </ul>
           </section>
         <div class = "goods_section">
             <div class="goods__container">
-                <good-list :goodList="goods" @open="openPopup"></good-list>
+                <good-list :goodList="category_items.slice(0, goodsnow)" @open="openPopup"></good-list>
             </div>
-            <button @click = "loadMore" class="load-more">Загрузить ещё</button>
+            <button v-if = "this.category_items.length >= this.goodsnow" @click = "loadMore" class="load-more">Загрузить ещё</button>
         </div>
         <popup v-bind:popup="popup" @close="closePopup" />
     </div>
@@ -76,9 +46,10 @@
                 "header-comp": headercomp
             },
             data: {
-                goodsnow: 10,
-                grocery: grocery,
-                goods: grocery.slice(0, 10),
+                goodsnow: 8,
+                categories: [],
+                category_name: "Bathroom Accessories & Towels",
+                category_items: [],
                 popup: false
             },
             methods: {
@@ -89,9 +60,32 @@
                     this.popup = false
                 },
                 loadMore: function() {
-                    this.goodsnow += 10
-                    this.goods = grocery.slice(0, this.goodsnow)
+                    this.goodsnow += 8
+                },
+                updateCategoryItems: function() {
+                    this.category_items = []
+                    for (let i = 0; i < grocery.length; i++){
+                    if(this.category_name == grocery[i]["section"]){
+                        this.category_items.push(grocery[i])
+                    } 
                 }
+                },
+                switchCategory: function(el) {
+                    this.category_name = el.target.innerHTML.replace("&amp;", "&")
+                    this.updateCategoryItems()
+                }
+            },
+            mounted() {
+                let arr = []
+                for (let i = 0; i < grocery.length; i++){
+                    arr.push(grocery[i]["section"])
+                }
+                arr = new Set(arr)
+                arr.forEach((el) => {
+                    this.categories.push(el)
+                })
+
+                this.updateCategoryItems()
             }
         })
     </script>
