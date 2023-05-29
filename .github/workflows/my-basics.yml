@@ -1,0 +1,19 @@
+name: test-action
+
+on:  
+  push: 
+    branches: 
+      - master
+      
+jobs:
+  test:
+    runs-on: ununtu-latest
+    steps:
+    - name: Print hello massege
+      run: echo "TEST"
+  deploy:
+    runs-on: ununtu-latest
+    steps:
+    - name: Print hello massege
+      run: echo "DEPLOY"
+      
